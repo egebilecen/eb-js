@@ -1,5 +1,11 @@
 /**
   * QUICK JS - Version 1.0
+  *
+  * Author: Ege Bilecen
+  * Contact: fb.com/EqeBilecen
+  *
+  * egebilecen.info
+  *
   */
 
 /*
@@ -60,5 +66,65 @@ function delay( func, time ){
 */
 function repeat( func, count ){
     for( let i=1; i <= count; i++ )
+    {
         func();
+    }
+}
+
+/*
+	Shuffle the array elements
+*/
+function array_shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
+/*
+	Check if number is negative
+*/
+function isNegative(num){
+    return num < 0;
+}
+
+/*
+	Get random element from array
+*/
+Array.prototype.getRandomElement = function(){
+    var arr  = this;
+    var rand = Math.floor(Math.random() * arr.length);
+    
+    return arr[rand];
+}
+
+/*
+	Get random property from a object
+*/
+Object.prototype.getRandomObject = function(property_count, excluded_keys){
+    if(typeof excluded_keys === "undefined" || excluded_keys.constructor !== Array)
+        excluded_keys = [];
+
+    var obj  = this;
+    var rand = Math.floor(Math.random() * property_count);
+    var i = 0;
+
+    for(key in obj)
+    {
+        if(i === rand)
+        {
+            if(excluded_keys.indexOf(key) === -1)
+                obj[key]._keyName_ = key;
+            else
+                obj.getRandomObject(property_count, excluded_keys);
+            
+            return obj[key];
+        }
+
+        i++;
+    }
 }
