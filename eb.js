@@ -124,7 +124,7 @@ Object.prototype.getRandomObject = function(property_count, excluded_keys){
 */
 function addNumberFilter()
 {
-    $("input").on("keyup", (e) => {
+    $("body").on("keyup", "input", (e) => {
         var $this = e.currentTarget;
         var data_type = $($this).attr("data-type");
 
