@@ -1,13 +1,3 @@
-/**
-  * QUICK JS - Version 1.0
-  *
-  * Author: Ege Bilecen
-  * Contact: fb.com/EqeBilecen
-  *
-  * egebilecen.info
-  *
-  */
-
 /*
 	Sleep Function
 */
@@ -24,7 +14,7 @@ function sleep(milliseconds) {
 	Unique ID Function
 	return: @string
 */
-function uniq_id(){
+function uniqueID(){
   return Math.random().toString(36).substr(2, 9);
 }
 
@@ -40,7 +30,7 @@ function randomNumber(min, max) {
 	Javascript's document.getElementById()
 	@return dom object
 */
-function getElementById( element ){
+function getElementById(element){
     return document.getElementById(element);
 }
 
@@ -48,14 +38,14 @@ function getElementById( element ){
 	Javascript's document.querySelector()
 	@return dom object
 */
-function querySelector( query ){
+function querySelector(query){
     return document.querySelector(query);
 }
 
 /*
 	Easy usage of setTimeout()
 */
-function delay( func, time ){
+function delay(func, time){
     setTimeout( () => {
         func();
     }, time );
@@ -64,7 +54,7 @@ function delay( func, time ){
 /*
 	Runs your function ?x times
 */
-function repeat( func, count ){
+function repeat(func, count){
     for( let i=1; i <= count; i++ )
     {
         func();
@@ -74,7 +64,7 @@ function repeat( func, count ){
 /*
 	Shuffle the array elements
 */
-function array_shuffle(a) {
+function arrayShuffle(a) {
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
@@ -127,4 +117,33 @@ Object.prototype.getRandomObject = function(property_count, excluded_keys){
 
         i++;
     }
+}
+
+/*
+	Add number filter to input. Requires jQuery
+*/
+function addNumberFilter()
+{
+    $("input").on("keyup", (e) => {
+        var $this = e.currentTarget;
+        var data_type = $($this).attr("data-type");
+
+        if(!data_type) return;
+
+        var val = $($this).val();
+
+        if(data_type == "float" || data_type == "double")
+        {
+            if(isNaN(val))
+            {
+                val = val.replace(/[^0-9\.]/g,'');
+
+                if(val.split('.').length > 2) 
+                    val = val.replace(/\.+$/, "");
+            }
+        }
+        else val = val.replace(/[^0-9]/g,'');
+
+        $($this).val(val);
+    });	
 }
