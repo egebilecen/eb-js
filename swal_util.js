@@ -7,7 +7,8 @@ function confirmSwal(title, text, confirmCallback = null, cancelCallback = null)
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Evet"
+        confirmButtonText: "Evet",
+        cancelButtonText: "İptal"
     })
     .then((result) => {
         if(result.isConfirmed
