@@ -18,6 +18,25 @@ function confirmSwal(title, text, confirmCallback = null, cancelCallback = null)
     });
 }
 
+function isAjaxLocked()
+{
+    if(AJAX_LOCK)
+    {
+        Swal.fire({
+            title : "Uyarı",
+            html  : "Lütfen bir önceki gönderilen isteğin bitmesini bekleyiniz.",
+            icon  : "warning",
+            showConfirmButton : true,
+            confirmButtonText : "Kapat",
+            allowOutsideClick : false
+        });
+
+        return true;
+    }
+
+    return false;   
+}
+
 function ajaxResultSwal(res)
 {
     let show_btn = !res.hide_btn;
