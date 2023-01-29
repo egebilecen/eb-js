@@ -35,3 +35,15 @@ function ajaxResultSwal(res)
         allowOutsideClick : false
     });
 }
+
+function ajaxErrorSwal()
+{
+    Swal.fire({
+        title : "Hata",
+        html  : "İstek gönderilirken bir hata oluştu.",
+        icon  : "error",
+        showConfirmButton : true,
+        confirmButtonText : "Kapat",
+        allowOutsideClick : false
+    });
+}
