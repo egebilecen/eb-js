@@ -10,6 +10,8 @@ function sendAjaxRequest({ url, method, data, dataType, onSuccess, onError })
     if(onSuccess === undefined) onSuccess = null;
     if(onError === undefined) onError = null;
 
+    AJAX_LOCK = true;
+
     $.ajax({
         url  : url,
         type : method,
@@ -17,30 +19,13 @@ function sendAjaxRequest({ url, method, data, dataType, onSuccess, onError })
         dataType : dataType,
         success : function(res)
         {
+            AJAX_LOCK = false;
             if(onSuccess !== null) onSuccess(res);
         },
         error : function(err)
         {
+            AJAX_LOCK = false;
             if(onError !== null) onError(err);
         }
     });
-}
-
-function isAjaxLocked()
-{
-    if(AJAX_LOCK)
-    {
-        Swal.fire({
-            title : "Uyarı",
-            html  : "Lütfen bir önceki gönderilen isteğin bitmesini bekleyiniz.",
-            icon  : "warning",
-            showConfirmButton : true,
-            confirmButtonText : "Kapat",
-            allowOutsideClick : false
-        });
-
-        return true;
-    }
-
-    return false;   
 }
