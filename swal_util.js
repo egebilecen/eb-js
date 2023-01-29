@@ -20,7 +20,7 @@ function confirmSwal(title, text, confirmCallback = null, cancelCallback = null)
 
 function ajaxResultSwal(res)
 {
-    var show_btn = !res.hide_btn;
+    let show_btn = !res.hide_btn;
 
     if(show_btn == null
     || show_btn == undefined)
