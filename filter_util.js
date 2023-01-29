@@ -16,12 +16,12 @@ function validateEmail(email)
 function addNumberFilter()
 {
     $("body").on("keyup", "input", (e) => {
-        var $this = e.currentTarget;
-        var data_type = $($this).attr("data-type");
+        let $this = e.currentTarget;
+        let data_type = $($this).attr("data-type");
 
         if(!data_type) return;
 
-        var val = $($this).val();
+        let val = $($this).val();
 
         if(data_type == "float" || data_type == "double")
         {
