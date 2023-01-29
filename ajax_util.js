@@ -1,4 +1,3 @@
-// Requires SweetAlert2
 let AJAX_LOCK = false;
 
 function sendAjaxRequest({ url, method, data, dataType, onSuccess, onError })
