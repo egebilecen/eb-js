@@ -2,6 +2,8 @@ let AJAX_LOCK = false;
 
 function sendAjaxRequest({ url, method, data, dataType, onSuccess, onError })
 {
+    if(AJAX_LOCK) return;
+    
     if(url === undefined) url = "ajax.php";
     if(method === undefined) method = "post";
     if(data === undefined) data = {};
