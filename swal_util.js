@@ -40,18 +40,29 @@ function isAjaxLocked()
 
 function ajaxResultSwal(res)
 {
-    let show_btn = !res.hide_btn;
+    let showBtn = !res.hide_btn;
 
-    if(show_btn == null
-    || show_btn == undefined)
-        show_btn = true;
+    if(showBtn == null
+    || showBtn == undefined)
+        showBtn = true;
 
+    showSwal(
+        (res.data == "error") ? "Hata" : ((res.data == "warning") ? "Uyarı" : "Bilgi"),
+        res.message + (res.data != "success" ? " <br /><b>(İşlem Kodu: "+res.code+")</b>" : ""),
+        res.data == "" ? "error" : res.data,
+        "Kapat",
+        showBtn
+    );
+}
+
+function showSwal(title, text, icon, confirmButtonText = "Kapat", showConfirmButton = true)
+{
     Swal.fire({
-        title : (res.swal_icon == "error") ? "Hata" : ((res.swal_icon == "warning") ? "Uyarı" : "Bilgi"),
-        html  : res.message + (res.swal_icon != "success" ? " <br /><b>(İşlem Kodu: "+res.code+")</b>" : ""),
-        icon  : res.swal_icon,
-        showConfirmButton : show_btn,
-        confirmButtonText : "Kapat",
+        title : title,
+        html  : text,
+        icon  : icon,
+        showConfirmButton : showConfirmButton,
+        confirmButtonText : confirmButtonText,
         allowOutsideClick : false
     });
 }
